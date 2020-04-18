@@ -281,10 +281,10 @@ class Loss(Neuron):
         self.optimizer = optimizer
 
     def calcDerivative(self):
-        if self.inshpe != np.shape(self.optimizer.get_error()):
+        if self.inshpe != np.shape(self.optimizer.getError()):
             raise ValueError('optimizer and loss function error shapes don\'t match')
         if self.b == 0:
-            return self.optimizer.get_error()
+            return self.optimizer.getError()
         else:
             return np.zeros(self.inshpe)
 

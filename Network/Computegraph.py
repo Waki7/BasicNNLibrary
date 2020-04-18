@@ -2,6 +2,7 @@ import logging
 from Network import Neurons as NN
 from Network.Functions import *
 import numpy as np
+from sklearn.utils.extmath import softmax
 
 
 class Optimizers:
@@ -29,6 +30,11 @@ class Optimizers:
 
         def setLearningRate(self, lr):
             self.lr = lr
+
+        def cross_entropy(self, pred, target):
+            m = target.shape[0]
+            log_likelihood = -np.log(pred[range(m), target])
+            return log_likelihood
 
     class GD(Optimizer):
         def __init__(self, lr=.01, clipping = None):
